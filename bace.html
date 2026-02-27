@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-purple: #7000ff;
+            --dark-bg: #050505;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* Noodatiy Orqa Fon */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(112, 0, 255, 0.15) 0%, transparent 40%);
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Neon Tugmalar */
+        .neon-btn {
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        .neon-btn:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        /* Kartochkalar */
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--neon-purple);
+            box-shadow: 0 10px 40px rgba(112, 0, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animatsiyalar */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-img {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--neon-blue), var(--neon-purple));
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-mesh"></div>
+
+    <!-- Navbar -->
+    <nav class="glass-nav fixed w-full z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center">
+                <i class="fas fa-car-side text-white text-xl"></i>
+            </div>
+            <span class="orbitron text-2xl font-bold tracking-tighter">AUTO<span class="text-cyan-400">-STYLE</span></span>
+        </div>
+
+        <div class="hidden md:flex space-x-10 text-lg font-medium uppercase tracking-widest">
+            <a href="./" class="hover:text-cyan-400 transition">Asosiy</a>
+            <a href="./about" class="hover:text-cyan-400 transition">Biz haqimizda</a>
+        </div>
+
+        <div class="flex space-x-4 items-center">
+            <a href="./login" class="text-sm font-bold border-b border-transparent hover:border-cyan-400 transition">LOGIN</a>
+            <a href="./register" class="neon-btn px-6 py-2 rounded-full text-sm font-bold uppercase">Ro'yxatdan o'tish</a>
+        </div>
+    </nav>
+
+   
+    {% block body %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/5 py-16 px-10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
+            <div class="col-span-2">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 bg-cyan-400 rounded flex items-center justify-center">
+                        <i class="fas fa-car-side text-black text-sm"></i>
+                    </div>
+                    <span class="orbitron text-xl font-bold">AUTO-STYLE</span>
+                </div>
+                <p class="text-gray-500 max-w-sm">O'zbekistondagi eng zamonaviy avto-ekotizim. Biz bilan hammasi oson va stilga boy!</p>
+            </div>
+            
+            <div>
+                <h4 class="orbitron font-bold mb-6">MENU</h4>
+                <ul class="space-y-3 text-gray-400">
+                    <li><a href="#" class="hover:text-cyan-400">Biz haqimizda</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Xizmatlar</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Narxlar</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="orbitron font-bold mb-6">ALOQA</h4>
+                <p class="text-gray-400 mb-2">+998 90 123 45 67</p>
+                <p class="text-gray-400 mb-6">support@auto-style.uz</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-cyan-400 hover:text-black transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-cyan-400 hover:text-black transition"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-cyan-400 hover:text-black transition"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 text-center text-gray-600">
+            <p>&copy; 2024 Auto-Style.uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Oddiy skroll animatsiyasi uchun (ixtiyoriy)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
